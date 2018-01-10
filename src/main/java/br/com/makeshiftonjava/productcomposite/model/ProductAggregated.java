@@ -12,6 +12,11 @@ public class ProductAggregated {
         this.productId = productId;
     }
 
+    public ProductAggregated(String name, long productId) {
+        this.name = name;
+        this.productId = productId;
+    }
+
 
     public Long getProductId() {
         return productId;
