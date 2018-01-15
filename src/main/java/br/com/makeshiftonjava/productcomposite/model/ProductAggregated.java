@@ -1,29 +1,33 @@
 package br.com.makeshiftonjava.productcomposite.model;
 
+import java.util.List;
+
 public class ProductAggregated {
 
-    private Long productId;
+    private Long id;
     private String name;
+
+    private List<Recommendation> recommendations;
 
     public ProductAggregated() {
     }
 
-    public ProductAggregated(Long productId) {
-        this.productId = productId;
+    public ProductAggregated(Long id) {
+        this.id = id;
     }
 
-    public ProductAggregated(String name, long productId) {
+    public ProductAggregated(String name, Long id) {
         this.name = name;
-        this.productId = productId;
+        this.id = id;
     }
 
 
-    public Long getProductId() {
-        return productId;
+    public Long getId() {
+        return id;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -32,5 +36,13 @@ public class ProductAggregated {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Recommendation> getRecommendations() {
+        return recommendations;
+    }
+
+    public void setRecommendations(List<Recommendation> recommendations) {
+        this.recommendations = recommendations;
     }
 }

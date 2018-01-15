@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
+//TODO add RxJava
 @FeignClient(name = "product-service", fallback = ProductClient.ProductClientFallback.class)
 interface ProductClient {
 
@@ -25,7 +25,7 @@ interface ProductClient {
         @Override
         public ResponseEntity<ProductAggregated> getProduct(@PathVariable("productId") Long productId) {
             LOG.warn("fallback => getProduct(" + productId + ")");
-            return ResponseEntity.ok(new ProductAggregated("Product Fallback", 3213213));
+            return ResponseEntity.ok(new ProductAggregated("Product Fallback", 0L));
         }
     }
 }

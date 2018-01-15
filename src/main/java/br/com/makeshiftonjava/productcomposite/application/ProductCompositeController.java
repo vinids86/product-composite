@@ -1,6 +1,7 @@
 package br.com.makeshiftonjava.productcomposite.application;
 
 import br.com.makeshiftonjava.productcomposite.model.ProductAggregated;
+import br.com.makeshiftonjava.productcomposite.model.Recommendation;
 import br.com.makeshiftonjava.productcomposite.service.ProductAggregatedService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 public class ProductCompositeController {
@@ -30,10 +32,12 @@ public class ProductCompositeController {
             @RequestHeader(value = "Authorization") String authorizationHeader,
             Principal currentUser) {
         LOG.info("ProductComposite: product-composite/productId/" + productId);
+
         final ProductAggregated productAggregated = service.getProduct(productId);
-        final ProductAggregated crossSelling = service.getCrossSelling(productId);
-        productAggregated.setProductId(crossSelling.getProductId());
-        LOG.info("returned productAggregated: " + productAggregated.getName() + " " + productAggregated.getProductId());
+        final List<Recommendation> recommendations = service.getRecommendations(productId);
+        productAggregated.setRecommendations(recommendations);
+
+        LOG.info("returned productAggregated: " + productAggregated.getName() + " " + productAggregated.getId());
         return ResponseEntity.ok(productAggregated);
     }
 }
